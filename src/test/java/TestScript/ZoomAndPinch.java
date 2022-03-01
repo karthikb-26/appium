@@ -1,5 +1,6 @@
 package TestScript;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -11,10 +12,21 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
+import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
 public class ZoomAndPinch {
 	@Test
 	public void scaleView() throws MalformedURLException, Throwable {
+		
+		
+		AppiumDriverLocalService server = AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
+				.withArgument(GeneralServerFlag.SESSION_OVERRIDE)
+				.usingPort(4723).withLogFile(new File("\\Exp\\Logs")));
+		
+		server.start();
+		
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 		dc.setCapability(MobileCapabilityType.PLATFORM_VERSION, "11");
@@ -42,7 +54,7 @@ public class ZoomAndPinch {
 		driver.pinch(img);
 		driver.hideKeyboard();
 		
-		
+		server.stop();
 	}
 
 }

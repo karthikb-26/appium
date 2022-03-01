@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.Test;
@@ -49,6 +50,7 @@ public class Notification {
 	 driver.findElement(By.xpath("//android.widget.TextView[@text='Joe']")).click();;
 		//tapaction(1, notify);
 		
+	 
 		
 	}
 	public void tapaction(int fingers,WebElement elements)
